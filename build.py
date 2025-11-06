@@ -52,11 +52,12 @@ html = f'''<!DOCTYPE html>
 <html><head><title>PREDICTO 360</title><meta name="viewport" content="width=device-width, initial-scale=1">
 <style>body{{font-family:Arial;background:#1e3c72;color:white;text-align:center;padding:40px;}}.card{{background:rgba(255,255,255,0.1);padding:30px;border-radius:20px;max-width:500px;margin:auto;}}.indice{{font-size:70px;color:#ff5252;}}</style></head>
 <body><div class="card"><h1>PREDICTO 360</h1><div class="indice">{indice:.1f} {"↓" if indice < 68 else "↑"}</div><p><strong>{explic}</strong></p>
-<a href="TU_LINK_PRO" style="background:#00c853;color:white;padding:16px;border-radius:12px;text-decoration:none;display:block;margin:15px;">PRO $500/mes</a>
+<a href=https://mpago.li/2NDPgkm style="background:#00c853;color:white;padding:16px;border-radius:12px;text-decoration:none;display:block;margin:15px;">PRO $500/mes</a>
 <a href="TU_LINK_DONACION" style="background:#ff9800;color:white;padding:16px;border-radius:12px;text-decoration:none;display:block;margin:15px;">APOYANOS $500</a>
 </div></body></html>'''
 
 os.makedirs('dist', exist_ok=True)
 with open('dist/index.html', 'w', encoding='utf-8') as f:
     f.write(html)
+
 print("¡HTML generado!")
