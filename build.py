@@ -65,7 +65,7 @@ causa = max(sent_por_tema, key=sent_por_tema.get) if variacion < 0 else min(sent
 barra = "█" * int(indice//5) + "░" * (20 - int(indice//5))
 
 # === HTML HERMOSO ===
-LINK_PRO = https://mpago.li/2NDPgkm  # ← TU LINK
+LINK_PRO = "https://mpago.li/2NDPgkm"  # ← TU LINK
 
 temas_html = ""
 for t in temas:
@@ -129,4 +129,5 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
     f.write(html)
 
 print(f"PREDICTO 360 GENERADO: {indice}%")
+
 
