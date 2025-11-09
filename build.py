@@ -190,10 +190,27 @@ html = f"""
 # === GUARDAR EN dist/ (NOMBRE GENÉRICO) ===
 os.makedirs("dist", exist_ok=True)
 nombre_archivo = f"pro-{CLIENTE.lower().replace(' ', '-')}.html"
-with open(f"dist/{nombre_archivo}", "w", encoding="utf-8") as f:
+
+# ESCRIBIR EL DASHBOARD
+ruta_dashboard = f"dist/{nombre_archivo}"
+with open(ruta_dashboard, "w", encoding="utf-8") as f:
     f.write(html)
 
-print(f"Dashboard PRO generado: dist/{nombre_archivo}")
-print(f"Índice: {indice}% | Cliente: {CLIENTE} | Zona: {ZONA}")
+# === CREAR index.html DE RESPALDO (PARA EVITAR 404) ===
+with open("dist/index.html", "w", encoding="utf-8") as f:
+    f.write(f'''
+<!DOCTYPE html>
+<html><head><title>PredictO 360</title></head>
+<body style="font-family:Arial;text-align:center;padding:50px;background:#1e3a8a;color:white;">
+  <h1>PREDICTO 360</h1>
+  <p>Dashboard activo para <strong>{CLIENTE}</strong></p>
+  <p><a href="/{nombre_archivo}" style="color:#f59e0b;font-size:20px;">→ ABRIR DASHBOARD PRO ←</a></p>
+  <p><small>Actualizado: {datetime.now().strftime('%d/%m %H:%M')}</small></p>
+</body></html>
+''')
+
+print(f"DASHBOARD GENERADO: {nombre_archivo}")
+print(f"URL: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
