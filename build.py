@@ -187,9 +187,13 @@ html = f"""
 </html>
 """
 
-# === GUARDAR EN dist/ ===
-os.makedirs("dist", exist_ok=True)
-nombre_archivo = f"pro-{CLIENTE.lower().replace(' ', '-')}.html"
+# === COPIAR LOGO A dist/ (PARA QUE NETLIFY LO PUBLIQUE) ===
+import shutil
+if os.path.exists("logo.png"):
+    shutil.copy("logo.png", "dist/logo.png")
+    print("Logo copiado a dist/logo.png")
+else:
+    print("ADVERTENCIA: logo.png no encontrado en raíz del repo")
 
 # === DASHBOARD PRO (CON LOGO) ===
 ruta_dashboard = f"dist/{nombre_archivo}"
@@ -240,6 +244,7 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
 
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
