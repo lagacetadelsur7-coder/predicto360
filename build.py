@@ -3,15 +3,14 @@ import os, random, json
 from datetime import datetime
 
 # ========================================
-# CAMBIÁ ESTOS 5 DATOS POR CADA CLIENTE
+# CAMBIÁ ESTOS 4 DATOS POR CADA CLIENTE
 # ========================================
-CLIENTE = "NOMBRE DEL CLIENTE"          # Ej: "Vanessa Moyano"
-ZONA = "CIUDAD O ZONA"                  # Ej: "Río Cuarto"
+CLIENTE = "César Moyano"
+ZONA = "Río Cuarto"
 # LINK_CONTACTO ELIMINADO
-
 # LISTAS DE ALIADOS Y RIVALES (poné los @ sin @)
-ALIADOS = ["aliado1", "aliado2"]        # Ej: ["secretario_vanessa", "concejal_aliado1"]
-RIVALES = ["rival1", "rival2"]          # Ej: ["concejal_lopez", "partido_rival"]
+ALIADOS = ["csar.moyano", "vanemmoyano"]  # ← Tus 2 cuentas de IG
+RIVALES = []
 # ========================================
 
 # === DATOS SIMULADOS (100% GRATIS, ILIMITADO) ===
@@ -245,6 +244,7 @@ else:
 
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
