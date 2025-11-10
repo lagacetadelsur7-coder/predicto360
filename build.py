@@ -187,30 +187,60 @@ html = f"""
 </html>
 """
 
-# === GUARDAR EN dist/ (NOMBRE GENÉRICO) ===
+# === GUARDAR EN dist/ ===
 os.makedirs("dist", exist_ok=True)
 nombre_archivo = f"pro-{CLIENTE.lower().replace(' ', '-')}.html"
 
-# ESCRIBIR EL DASHBOARD
+# === DASHBOARD PRO (CON LOGO) ===
 ruta_dashboard = f"dist/{nombre_archivo}"
 with open(ruta_dashboard, "w", encoding="utf-8") as f:
     f.write(html)
 
-# === CREAR index.html DE RESPALDO (PARA EVITAR 404) ===
+# === PÁGINA DE ENTRADA (index.html) ===
 with open("dist/index.html", "w", encoding="utf-8") as f:
     f.write(f'''
 <!DOCTYPE html>
-<html><head><title>PredictO 360</title></head>
-<body style="font-family:Arial;text-align:center;padding:50px;background:#1e3a8a;color:white;">
-  <h1>PREDICTO 360</h1>
-  <p>Dashboard activo para <strong>{CLIENTE}</strong></p>
-  <p><a href="/{nombre_archivo}" style="color:#f59e0b;font-size:20px;">→ ABRIR DASHBOARD PRO ←</a></p>
-  <p><small>Actualizado: {datetime.now().strftime('%d/%m %H:%M')}</small></p>
-</body></html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PredictO 360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {{--primario: #1e3a8a; --secundario: #f59e0b;}}
+    body {{font-family: 'Inter', sans-serif; background: linear-gradient(135deg, var(--primario), #1e40af); color: white; margin: 0; padding: 40px; text-align: center;}}
+    .container {{max-width: 800px; margin: auto; background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);}}
+    .logo {{display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 30px;}}
+    .logo img {{width: 80px; height: 80px; border-radius: 16px;}}
+    .logo h1 {{font-size: 48px; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}}
+    .descripcion {{font-size: 18px; line-height: 1.7; margin: 30px 0; opacity: 0.9;}}
+    .btn {{background: var(--secundario); color: black; font-weight: bold; padding: 18px 36px; font-size: 20px; border: none; border-radius: 16px; cursor: pointer; box-shadow: 0 6px 20px rgba(245,158,11,0.4); transition: all 0.3s;}}
+    .btn:hover {{background: #f97316; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.5);}}
+    @media (max-width: 600px) {{ .logo h1 {{font-size: 36px;}} .btn {{width: 90%;}} }}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="/logo.png" alt="PredictO 360">
+      <h1>PredictO 360</h1>
+    </div>
+    <div class="descripcion">
+      <strong>Inteligencia política en tiempo real</strong> que analiza X, Instagram y tendencias ocultas.<br><br>
+      <strong>Supera a las encuestas tradicionales</strong> con datos por barrio, voto oculto, radar de traición y simulador de campaña.<br><br>
+      <strong>Exclusivo para políticos y medios</strong> – $35.000/mes
+    </div>
+    <a href="/{nombre_archivo}">
+      <button class="btn">ABRIR DASHBOARD PRO</button>
+    </a>
+  </div>
+</body>
+</html>
 ''')
 
-print(f"DASHBOARD GENERADO: {nombre_archivo}")
-print(f"URL: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
+print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
