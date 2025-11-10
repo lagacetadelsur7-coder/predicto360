@@ -1,3 +1,6 @@
 [build]
 command = "python3.11 build.py"
 environment = { PYTHON_VERSION = "3.11" }
+
+[build.environment]
+PYTHON_VERSION = "3.11"
