@@ -7,7 +7,7 @@ from datetime import datetime
 # ========================================
 CLIENTE = "NOMBRE DEL CLIENTE"          # Ej: "Vanessa Moyano"
 ZONA = "CIUDAD O ZONA"                  # Ej: "Río Cuarto"
-LINK_CONTACTO = "https://wa.me/549XXXXXXXXXX"  # TU WHATSAPP
+# LINK_CONTACTO ELIMINADO
 
 # LISTAS DE ALIADOS Y RIVALES (poné los @ sin @)
 ALIADOS = ["aliado1", "aliado2"]        # Ej: ["secretario_vanessa", "concejal_aliado1"]
@@ -151,10 +151,7 @@ html = f"""
       {"".join([f'<div><strong>{k}</strong>: {v}</div>' for k, v in simulador.items()])}
     </div>
 
-    <!-- BOTÓN CONTACTO -->
-    <button class="btn" onclick="window.open('{LINK_CONTACTO}', '_blank')">
-      Contactar Soporte
-    </button>
+   <!-- BOTÓN DE CONTACTO ELIMINADO -->
 
     <footer>
       Actualizado: {datetime.now().strftime('%d/%m %H:%M')} • Licencia Política $35.000/mes<br>
@@ -248,6 +245,7 @@ else:
 
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
