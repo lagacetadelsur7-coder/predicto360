@@ -187,15 +187,11 @@ html = f"""
 </html>
 """
 
-# === COPIAR LOGO A dist/ (PARA QUE NETLIFY LO PUBLIQUE) ===
-import shutil
-if os.path.exists("logo.png"):
-    shutil.copy("logo.png", "dist/logo.png")
-    print("Logo copiado a dist/logo.png")
-else:
-    print("ADVERTENCIA: logo.png no encontrado en raíz del repo")
+# === GUARDAR EN dist/ ===
+os.makedirs("dist", exist_ok=True)  # ← CREA dist/ SI NO EXISTE
+nombre_archivo = f"pro-{CLIENTE.lower().replace(' ', '-')}.html"
 
-# === DASHBOARD PRO (CON LOGO) ===
+# === DASHBOARD PRO ===
 ruta_dashboard = f"dist/{nombre_archivo}"
 with open(ruta_dashboard, "w", encoding="utf-8") as f:
     f.write(html)
@@ -219,15 +215,15 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
     .logo h1 {{font-size: 48px; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}}
     .descripcion {{font-size: 18px; line-height: 1.7; margin: 30px 0; opacity: 0.9;}}
     .btn {{background: var(--secundario); color: black; font-weight: bold; padding: 18px 36px; font-size: 20px; border: none; border-radius: 16px; cursor: pointer; box-shadow: 0 6px 20px rgba(245,158,11,0.4); transition: all 0.3s;}}
-    .btn:hover {{background: #f97316; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.5);}}
+    .btn:hover {{background: #f97316; transform: translateY(-3px);}}
     @media (max-width: 600px) {{ .logo h1 {{font-size: 36px;}} .btn {{width: 90%;}} }}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <img src="/logo.png" alt="PredictO 360">
-      <h1>PredictO 360</h1>
+      <img src="logo.png" alt="PredictO 360">
+      <h1>PREDICTO 360</h1>
     </div>
     <div class="descripcion">
       <strong>Inteligencia política en tiempo real</strong> que analiza X, Instagram y tendencias ocultas.<br><br>
@@ -242,8 +238,17 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
 </html>
 ''')
 
+# === COPIAR LOGO A dist/ (PARA QUE NETLIFY LO PUBLIQUE) ===
+import shutil
+if os.path.exists("logo.png"):
+    shutil.copy("logo.png", "dist/logo.png")
+    print("Logo copiado a dist/logo.png")
+else:
+    print("ADVERTENCIA: logo.png no encontrado en raíz del repo")
+
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
