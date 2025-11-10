@@ -5,12 +5,10 @@ from datetime import datetime
 # ========================================
 # CAMBIÁ ESTOS 4 DATOS POR CADA CLIENTE
 # ========================================
-CLIENTE = "César Moyano"
-ZONA = "Río Cuarto"
-# LINK_CONTACTO ELIMINADO
-# LISTAS DE ALIADOS Y RIVALES (poné los @ sin @)
-ALIADOS = ["csar.moyano", "vanemmoyano"]  # ← Tus 2 cuentas de IG
-RIVALES = []
+CLIENTE = "NOMBRE DEL CLIENTE"           # Ej: "Juan Pérez"
+ZONA = "CIUDAD O ZONA"                   # Ej: "Córdoba Capital"
+ALIADOS = ["cuenta1", "cuenta2"]         # Cuentas de X/IG sin @
+RIVALES = []                             # Dejá vacío si no hay rivales
 # ========================================
 
 # === DATOS SIMULADOS (100% GRATIS, ILIMITADO) ===
@@ -244,6 +242,7 @@ else:
 
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
