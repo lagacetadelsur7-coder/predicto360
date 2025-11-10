@@ -99,7 +99,7 @@ html = f"""
 
     <!-- LOGO + TÍTULO -->
     <div class="logo">
-      <img src="https://i.imgur.com/8vG6z7k.png" alt="PredictO 360">
+      <img src="logo.png" alt="PredictO 360">
       <h1>PREDICTO 360</h1>
     </div>
 
@@ -240,6 +240,7 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
 
 print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
 print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+
 
 
 
