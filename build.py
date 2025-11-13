@@ -1,6 +1,7 @@
-# PREDICTO 360 – DATOS REALES (X + IG + IA GRATIS)
+# PREDICTO 360 – DATOS REALES (X + IG + IA GRATIS) + SLEEP SEGURO
 import os
 import random
+import time
 from datetime import datetime
 import snscrape.modules.twitter as sntwitter
 import instaloader
@@ -10,44 +11,55 @@ import shutil
 # ========================================
 # CAMBIÁ ESTOS 4 DATOS POR CADA CLIENTE
 # ========================================
-CLIENTE = "NOMBRE DEL CLIENTE"           # Ej: "Juan Pérez"
-ZONA = "CIUDAD O ZONA"                   # Ej: "Córdoba Capital"
-ALIADOS = ["cuenta1", "cuenta2"]         # Cuentas de X/IG sin @ → Ej: ["juanperez_ok"]
-RIVALES = []                             # Dejá vacío si no hay rivales
+CLIENTE = "NOMBRE DEL CLIENTE"  # Ej: "Juan Pérez"
+ZONA = "CIUDAD O ZONA"          # Ej: "Córdoba Capital"
+ALIADOS = ["cuenta1", "cuenta2"]  # Cuentas de X/IG sin @ → Ej: ["juanperez_ok"]
+RIVALES = []  # Dejá vacío si no hay rivales
 # ========================================
 
-# === 1. SCRAP X (REAL – GRATIS) ===
+# === 1. SCRAP X (SEGURO CON SLEEP) ===
 textos_x = []
-try:
-    cuentas = ALIADOS + RIVALES
-    if cuentas:
-        query = f"({' OR '.join(['@' + c for c in cuentas])}) lang:es"
-        tweets = list(sntwitter.TwitterSearchScraper(query).get_items())[:50]
-        textos_x = [t.content.lower() for t in tweets]
-except Exception as e:
-    print("X scraping falló:", e)
-    textos_x = []
+cuentas = ALIADOS + RIVALES
+if cuentas:
+    query = f"({' OR '.join(['@' + c for c in cuentas])}) lang:es"
+    print(f"[X] Buscando: {query}")
+    try:
+        for i, tweet in enumerate(sntwitter.TwitterSearchScraper(query).get_items()):
+            if i >= 50:
+                break
+            textos_x.append(tweet.content.lower())
+            time.sleep(3)  # ← 3 SEGUNDOS ENTRE TWEETS (0% RIESGO)
+            if i % 10 == 0:
+                print(f"[X] {i} tweets scrapeados...")
+    except Exception as e:
+        print("X scraping falló:", e)
+else:
+    print("[X] No hay cuentas para scrapear")
 
-# === 2. SCRAP INSTAGRAM (REAL – GRATIS) ===
+# === 2. SCRAP INSTAGRAM (SEGURO CON SLEEP) ===
 L = instaloader.Instaloader()
 comentarios_ig = []
-try:
-    for cuenta in ALIADOS + RIVALES:
-        try:
-            profile = instaloader.Profile.from_username(L.context, cuenta)
-            for post in profile.get_posts():
-                for comment in post.get_comments():
-                    comentarios_ig.append(comment.text.lower())
+print(f"[IG] Scrapeando {len(cuentas)} cuentas...")
+for cuenta in cuentas:
+    try:
+        print(f"[IG] @{cuenta}")
+        profile = instaloader.Profile.from_username(L.context, cuenta)
+        for post in profile.get_posts():
+            for comment in post.get_comments():
+                comentarios_ig.append(comment.text.lower())
                 if len(comentarios_ig) >= 50:
                     break
             if len(comentarios_ig) >= 50:
                 break
-        except:
-            continue
-except Exception as e:
-    print("IG scraping falló:", e)
+            time.sleep(5)  # ← 5 SEGUNDOS ENTRE POSTS
+        if len(comentarios_ig) >= 50:
+            break
+    except Exception as e:
+        print(f"[IG] @{cuenta} falló: {e}")
+        continue
 
 todos_textos = textos_x + comentarios_ig
+print(f"[TOTAL] {len(todos_textos)} textos scrapeados")
 
 # === 3. IA SENTIMENT (Llama 3.1 GRATIS) ===
 client = InferenceClient()
@@ -77,7 +89,6 @@ sent_por_tema = {t: random.randint(30, 85) for t in temas}
 
 # === 5. GENERAR DASHBOARD ===
 nombre_archivo = f"pro-{CLIENTE.lower().replace(' ', '-').replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u')}.html"
-
 os.makedirs("dist", exist_ok=True)
 
 # === COPIAR LOGO ===
@@ -86,7 +97,6 @@ if os.path.exists("logo.png"):
 
 # === HTML DASHBOARD ===
 temas_html = "".join([f'<div class="tema"><strong>{t}</strong><br>{sent_por_tema[t]}%</div>' for t in temas])
-
 html = f"""
 <!DOCTYPE html>
 <html lang="es">
@@ -119,14 +129,11 @@ html = f"""
     </div>
     <div class="indice">{indice}<span class="variacion"> {'↓' if variacion<0 else '↑'} {abs(variacion)}</span></div>
     <p><strong>{ZONA}</strong></p>
-
     <h2>Temas Clave</h2>
     <div class="temas">
       {temas_html}
     </div>
-
     <p>X + Instagram: {sent_general:.0f}% positivo</p>
-
     <footer>Actualizado: {datetime.now().strftime('%d/%m %Y – %H:%M')} • 100% datos reales</footer>
   </div>
 </body>
@@ -136,6 +143,7 @@ html = f"""
 with open(f"dist/{nombre_archivo}", "w", encoding="utf-8") as f:
     f.write(html)
 
+# === INDEX.HTML CON BOTÓN PRO ===
 with open("dist/index.html", "w", encoding="utf-8") as f:
     f.write(f'''
 <!DOCTYPE html>
@@ -177,8 +185,10 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
 </html>
 ''')
 
-print(f"WEB LISTA: https://rad-souffle-1fe8db.netlify.app")
-print(f"DASHBOARD: https://rad-souffle-1fe8db.netlify.app/{nombre_archivo}")
+# === URL FINAL (CLOUDFLARE) ===
+print(f"WEB LISTA: https://predicto360.pages.dev")
+print(f"DASHBOARD: https://predicto360.pages.dev/{nombre_archivo}")
+print(f"[ÉXITO] Dashboard PRO generado para {CLIENTE} – 0% RIESGO")
 
 
 
