@@ -11,10 +11,10 @@ import shutil
 # ========================================
 # CAMBIÁ ESTOS 4 DATOS POR CADA CLIENTE
 # ========================================
-CLIENTE = "NOMBRE DEL CLIENTE"  # Ej: "Juan Pérez"
-ZONA = "CIUDAD O ZONA"          # Ej: "Córdoba Capital"
-ALIADOS = ["cuenta1", "cuenta2"]  # Cuentas de X/IG sin @ → Ej: ["juanperez_ok"]
-RIVALES = []  # Dejá vacío si no hay rivales
+CLIENTE = "César Moyano"
+ZONA = "Río Cuarto"
+ALIADOS = ["csar.moyano", "vanemmoyano"]
+RIVALES = []
 # ========================================
 
 # === 1. SCRAP X (SEGURO CON SLEEP) ===
@@ -189,6 +189,7 @@ with open("dist/index.html", "w", encoding="utf-8") as f:
 print(f"WEB LISTA: https://predicto360.pages.dev")
 print(f"DASHBOARD: https://predicto360.pages.dev/{nombre_archivo}")
 print(f"[ÉXITO] Dashboard PRO generado para {CLIENTE} – 0% RIESGO")
+
 
 
 
