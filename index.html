@@ -34,7 +34,6 @@
         <p style="font-size:19px; margin:0 0 30px 0; opacity:0.95;">
           <strong>Asesoramiento personalizado 1:1</strong> con:
         </p>
-
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-bottom:30px;">
           <div style="background:rgba(255,255,255,0.2); padding:20px; border-radius:14px; width:280px;">
             <h4 style="margin:0 0 8px 0; font-size:18px;">Lic. César Moyano</h4>
@@ -45,7 +44,6 @@
             <p style="margin:0; font-size:15px; opacity:0.9;"><strong>Coaching ontológico</strong><br>→ Liderazgo auténtico<br>→ Comunicación poderosa<br>→ Gestión emocional</p>
           </div>
         </div>
-
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; text-align:left; font-size:17px; margin-bottom:32px;">
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Reunión semanal 1:1 (30 min)</strong><br><span style="opacity:0.9;">Revisión de datos + foco estratégico</span></div>
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>3 mensajes clave listos</strong><br><span style="opacity:0.9;">Ej: "10 patrullas más en Alberdi"</span></div>
@@ -54,18 +52,15 @@
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Respuesta a crisis en 2h</strong><br><span style="opacity:0.9;">Trends sube → mensaje listo</span></div>
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Informe mensual PRO</strong><br><span style="opacity:0.9;">+7% apoyo • Presenta a donantes</span></div>
         </div>
-
         <a href="mailto:contacto@predicto360.com.ar">
           <button style="background:#f59e0b; color:#1e3a8a; padding:18px 55px; font-weight:bold; border:none; border-radius:14px; font-size:21px; box-shadow:0 6px 22px rgba(245,158,11,0.45);">
             COMUNICATE PARA ASESORAMIENTO PERSONALIZADO
           </button>
         </a>
       </div>
-
       <p style="font-size:14px; margin-top:50px; opacity:0.8;">Respuesta en menos de 1 hora • Acceso nacional inmediato • Neutral y confidencial</p>
     </div>
   </div>
-
   <!-- SECCIÓN: ESTRATEGIA + COACHING + IA -->
   <div style="background:#f8fafc; padding:90px 20px;">
     <div class="container">
@@ -76,7 +71,6 @@
       <p style="text-align:center; font-size:22px; color:#475569; max-width:850px; margin:0 auto 55px;">
         No somos una consultora tradicional. Somos <strong>el equipo que combina datos, liderazgo y tecnología</strong> para que ganes.
       </p>
-
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:32px; margin-bottom:65px;">
         <div style="background:white; padding:32px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.08); border-left:6px solid #0ea5e9;">
           <h3 style="color:#0ea5e9; font-size:24px; margin:0 0 14px 0;">Estrategia política hiperlocal</h3>
@@ -91,7 +85,6 @@
           <p style="color:#475569; font-size:17px;">PredictO 360 procesa:<br>→ 7 elecciones (2017-2025)<br>→ Censo por barrio<br>→ Trends + X en tiempo real</p>
         </div>
       </div>
-
       <div style="background:linear-gradient(135deg, #1e3a8a, #0ea5e9); color:white; padding:45px; border-radius:22px; box-shadow:0 14px 40px rgba(30,58,138,0.35);">
         <h3 style="font-size:29px; margin:0 0 22px 0; text-align:center;">¿Por qué <span style="color:#f59e0b;">somos mejores</span> que una consultora tradicional?</h3>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; text-align:left; font-size:18px;">
@@ -119,14 +112,12 @@
   <script>
     const map = L.map('mapa').setView([-38.4161, -63.6167], 4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-
     const puntos = [
       {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
       {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
       {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
       {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
     ];
-
     puntos.forEach(p => {
       L.circleMarker([p.lat, p.lng], { radius: 9, fillColor: "#0ea5e9", color: "#1e3a8a", weight: 2, fillOpacity: 0.85 })
         .addTo(map)
