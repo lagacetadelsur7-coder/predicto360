@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PredictO 360 – Inteligencia Política Nacional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:#f8fafc; color:#1e3a8a; line-height:1.6; }
+    .container { max-width:1200px; margin:auto; padding:0 20px; }
+    h1, h2, h3, h4 { font-weight:800; }
+    button { cursor:pointer; transition:transform 0.2s; }
+    button:hover { transform:scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO + MENSAJE PRINCIPAL -->
+  <div style="text-align:center; padding:80px 20px; background:linear-gradient(135deg, #0ea5e9, #1e3a8a); color:white;">
+    <div class="container">
+      <h1 style="font-size:42px; margin-bottom:20px;">Los datos reales son importantes.<br><span style="color:#f59e0b;">Pero el conocimiento es poder.</span></h1>
+      <p style="font-size:22px; max-width:800px; margin:0 auto 40px; opacity:0.95;">
+        <strong>PredictO 360</strong> te entrega la información precisa de <strong>cada barrio, ciudad, departamento y provincia</strong> de Argentina.<br>
+        Pero <strong>ganar no es solo ver los números</strong> — es <strong>saber qué hacer con ellos</strong>.
+      </p>
+
+      <!-- MAPA INTERACTIVO -->
+      <div id="mapa" style="height:520px; margin:50px 0; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.25);"></div>
+
+      <!-- CTA ASESORAMIENTO -->
+      <div style="background:rgba(255,255,255,0.15); padding:40px; border-radius:20px; backdrop-filter:blur(10px);">
+        <h3 style="font-size:28px; margin:0 0 20px 0;">¿Querés convertir los datos en <span style="color:#f59e0b;">decisiones ganadoras</span>?</h3>
+        <p style="font-size:19px; margin:0 0 30px 0; opacity:0.95;">
+          <strong>Asesoramiento personalizado 1:1</strong> con:
+        </p>
+
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-bottom:30px;">
+          <div style="background:rgba(255,255,255,0.2); padding:20px; border-radius:14px; width:280px;">
+            <h4 style="margin:0 0 8px 0; font-size:18px;">Lic. César Moyano</h4>
+            <p style="margin:0; font-size:15px; opacity:0.9;"><strong>Estrategia política</strong><br>→ Foco semanal<br>→ Mensajes clave<br>→ Plan por barrio</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.2); padding:20px; border-radius:14px; width:280px;">
+            <h4 style="margin:0 0 8px 0; font-size:18px;">Lic. Vanessa Moyano</h4>
+            <p style="margin:0; font-size:15px; opacity:0.9;"><strong>Coaching ontológico</strong><br>→ Liderazgo auténtico<br>→ Comunicación poderosa<br>→ Gestión emocional</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; text-align:left; font-size:17px; margin-bottom:32px;">
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Reunión semanal 1:1 (30 min)</strong><br><span style="opacity:0.9;">Revisión de datos + foco estratégico</span></div>
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>3 mensajes clave listos</strong><br><span style="opacity:0.9;">Ej: "10 patrullas más en Alberdi"</span></div>
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Plan de acción por barrio</strong><br><span style="opacity:0.9;">Lunes: Alberdi • Martes: Centro</span></div>
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Simulación de impacto</strong><br><span style="opacity:0.9;">"Si decís X → +5%"</span></div>
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Respuesta a crisis en 2h</strong><br><span style="opacity:0.9;">Trends sube → mensaje listo</span></div>
+          <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Informe mensual PRO</strong><br><span style="opacity:0.9;">+7% apoyo • Presenta a donantes</span></div>
+        </div>
+
+        <a href="mailto:contacto@predicto360.com.ar">
+          <button style="background:#f59e0b; color:#1e3a8a; padding:18px 55px; font-weight:bold; border:none; border-radius:14px; font-size:21px; box-shadow:0 6px 22px rgba(245,158,11,0.45);">
+            COMUNICATE PARA ASESORAMIENTO PERSONALIZADO
+          </button>
+        </a>
+      </div>
+
+      <p style="font-size:14px; margin-top:50px; opacity:0.8;">Respuesta en menos de 1 hora • Acceso nacional inmediato • Neutral y confidencial</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: ESTRATEGIA + COACHING + IA -->
+  <div style="background:#f8fafc; padding:90px 20px;">
+    <div class="container">
+      <h2 style="text-align:center; font-size:38px; margin-bottom:22px; color:#1e3a8a;">
+        Estrategia política + Coaching ontológico + IA<br>
+        <span style="color:#0ea5e9;">El futuro de ganar elecciones</span>
+      </h2>
+      <p style="text-align:center; font-size:22px; color:#475569; max-width:850px; margin:0 auto 55px;">
+        No somos una consultora tradicional. Somos <strong>el equipo que combina datos, liderazgo y tecnología</strong> para que ganes.
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:32px; margin-bottom:65px;">
+        <div style="background:white; padding:32px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.08); border-left:6px solid #0ea5e9;">
+          <h3 style="color:#0ea5e9; font-size:24px; margin:0 0 14px 0;">Estrategia política hiperlocal</h3>
+          <p style="color:#475569; font-size:17px;"><strong>Lic. César Moyano</strong> traduce datos en:<br>→ Foco semanal por barrio<br>→ Mensajes que conectan<br>→ Simulación de impacto</p>
+        </div>
+        <div style="background:white; padding:32px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.08); border-left:6px solid #f59e0b;">
+          <h3 style="color:#f59e0b; font-size:24px; margin:0 0 14px 0;">Coaching ontológico</h3>
+          <p style="color:#475569; font-size:17px;"><strong>Lic. Vanessa Moyano</strong> desarrolla:<br>→ Liderazgo auténtico<br>→ Comunicación emocional<br>→ Gestión de crisis internas</p>
+        </div>
+        <div style="background:white; padding:32px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.08); border-left:6px solid #10b981;">
+          <h3 style="color:#10b981; font-size:24px; margin:0 0 14px 0;">Inteligencia Artificial</h3>
+          <p style="color:#475569; font-size:17px;">PredictO 360 procesa:<br>→ 7 elecciones (2017-2025)<br>→ Censo por barrio<br>→ Trends + X en tiempo real</p>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg, #1e3a8a, #0ea5e9); color:white; padding:45px; border-radius:22px; box-shadow:0 14px 40px rgba(30,58,138,0.35);">
+        <h3 style="font-size:29px; margin:0 0 22px 0; text-align:center;">¿Por qué <span style="color:#f59e0b;">somos mejores</span> que una consultora tradicional?</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; text-align:left; font-size:18px;">
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>Datos actualizados 24/7</strong><br><span style="opacity:0.9;">vs PDF cada 30 días</span></div>
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>Hiperlocal: barrio por barrio</strong><br><span style="opacity:0.9;">vs "Córdoba en general"</span></div>
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>Simulación de impacto</strong><br><span style="opacity:0.9;">vs "creemos que va a funcionar"</span></div>
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>Coaching ontológico</strong><br><span style="opacity:0.9;">vs solo focus group</span></div>
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>Neutralidad absoluta</strong><br><span style="opacity:0.9;">vs consultoras partidarias</span></div>
+          <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>ROI 10x</strong><br><span style="opacity:0.9;">vs $300K en encuestas</span></div>
+        </div>
+        <div style="text-align:center; margin-top:35px;">
+          <a href="mailto:contacto@predicto360.com.ar">
+            <button style="background:#f59e0b; color:#1e3a8a; padding:20px 55px; font-weight:bold; border:none; border-radius:16px; font-size:22px; box-shadow:0 8px 25px rgba(245,158,11,0.5);">
+              SOLICITAR ACCESO + ASESORAMIENTO
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAPA INTERACTIVO -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script>
+    const map = L.map('mapa').setView([-38.4161, -63.6167], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+
+    const puntos = [
+      {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
+      {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
+      {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
+      {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
+    ];
+
+    puntos.forEach(p => {
+      L.circleMarker([p.lat, p.lng], { radius: 9, fillColor: "#0ea5e9", color: "#1e3a8a", weight: 2, fillOpacity: 0.85 })
+        .addTo(map)
+        .bindPopup(`<b style="font-size:16px;">${p.lugar}</b><br><span style="font-size:14px;">${p.info}</span>`);
+    });
+  </script>
+
+</body>
+</html>
