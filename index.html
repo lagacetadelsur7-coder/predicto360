@@ -26,7 +26,37 @@
       </p>
 
       <!-- MAPA INTERACTIVO -->
-      <div id="mapa" style="height:520px; margin:50px 0; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.25);"></div>
+<div id="mapa" style="height:520px; margin:50px 0; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.25);"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const map = L.map('mapa').setView([-38.4161, -63.6167], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+      attribution: '© OpenStreetMap' 
+    }).addTo(map);
+
+    const puntos = [
+      {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
+      {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
+      {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
+      {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
+    ];
+
+    puntos.forEach(p => {
+      L.circleMarker([p.lat, p.lng], { 
+        radius: 9, 
+        fillColor: "#0ea5e9", 
+        color: "#1e3a8a", 
+        weight: 2, 
+        fillOpacity: 0.85 
+      })
+      .addTo(map)
+      .bindPopup(`<b style="font-size:16px;">${p.lugar}</b><br><span style="font-size:14px;">${p.info}</span>`);
+    });
+  });
+</script>
 
       <!-- CTA ASESORAMIENTO -->
       <div style="background:rgba(255,255,255,0.15); padding:40px; border-radius:20px; backdrop-filter:blur(10px);">
