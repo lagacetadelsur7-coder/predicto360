@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PredictO 360 – Inteligencia Política Nacional</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter',sans-serif; background:#f8fafc; color:#1e3a8a; line-height:1.6; }
@@ -15,7 +16,6 @@
   </style>
 </head>
 <body>
-
   <!-- HERO + MENSAJE PRINCIPAL -->
   <div style="text-align:center; padding:80px 20px; background:linear-gradient(135deg, #0ea5e9, #1e3a8a); color:white;">
     <div class="container">
@@ -25,38 +25,8 @@
         Pero <strong>ganar no es solo ver los números</strong> — es <strong>saber qué hacer con ellos</strong>.
       </p>
 
-      <!-- MAPA INTERACTIVO -->
-<div id="mapa" style="height:520px; margin:50px 0; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.25);"></div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const map = L.map('mapa').setView([-38.4161, -63.6167], 5);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
-      attribution: '© OpenStreetMap' 
-    }).addTo(map);
-
-    const puntos = [
-      {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
-      {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
-      {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
-      {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
-    ];
-
-    puntos.forEach(p => {
-      L.circleMarker([p.lat, p.lng], { 
-        radius: 9, 
-        fillColor: "#0ea5e9", 
-        color: "#1e3a8a", 
-        weight: 2, 
-        fillOpacity: 0.85 
-      })
-      .addTo(map)
-      .bindPopup(`<b style="font-size:16px;">${p.lugar}</b><br><span style="font-size:14px;">${p.info}</span>`);
-    });
-  });
-</script>
+      <!-- MAPA INTERACTIVO (ÚNICO) -->
+      <div id="mapa" style="height:520px; margin:50px 0; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.25);"></div>
 
       <!-- CTA ASESORAMIENTO -->
       <div style="background:rgba(255,255,255,0.15); padding:40px; border-radius:20px; backdrop-filter:blur(10px);">
@@ -82,15 +52,19 @@
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Respuesta a crisis en 2h</strong><br><span style="opacity:0.9;">Trends sube → mensaje listo</span></div>
           <div style="background:rgba(255,255,255,0.2); padding:16px; border-radius:12px;"><strong>Informe mensual PRO</strong><br><span style="opacity:0.9;">+7% apoyo • Presenta a donantes</span></div>
         </div>
+
+        <!-- BOTÓN "COMUNICATE" CORREGIDO -->
         <a href="asesoramiento.html">
-  <button style="background:#f59e0b; color:#1e3a8a; padding:18px 55px; font-weight:bold; border:none; border-radius:14px; font-size:21px; box-shadow:0 6px 22px rgba(245,158,11,0.45);">
-    COMUNICATE PARA ASESORAMIENTO PERSONALIZADO
-  </button>
-</a>
+          <button style="background:#f59e0b; color:#1e3a8a; padding:18px 55px; font-weight:bold; border:none; border-radius:14px; font-size:21px; box-shadow:0 6px 22px rgba(245,158,11,0.45);">
+            COMUNICATE PARA ASESORAMIENTO PERSONALIZADO
+          </button>
+        </a>
+
       </div>
       <p style="font-size:14px; margin-top:50px; opacity:0.8;">Respuesta en menos de 1 hora • Acceso nacional inmediato • Neutral y confidencial</p>
     </div>
   </div>
+
   <!-- SECCIÓN: ESTRATEGIA + COACHING + IA -->
   <div style="background:#f8fafc; padding:90px 20px;">
     <div class="container">
@@ -126,31 +100,42 @@
           <div style="background:rgba(255,255,255,0.15); padding:18px; border-radius:14px;"><strong>ROI 10x</strong><br><span style="opacity:0.9;">vs $300K en encuestas</span></div>
         </div>
         <div style="text-align:center; margin-top:35px;">
-     <a href="acceso.html">
-  <button style="background:#f59e0b; color:#1e3a8a; padding:18px 50px; font-weight:bold; border:none; border-radius:14px; font-size:20px; cursor:pointer; box-shadow:0 8px 25px rgba(251,146,60,0.4);">
-    SOLICITAR ACCESO + ASESORAMIENTO
-  </button>
-</a>
-            
+          <a href="acceso.html">
+            <button style="background:#f59e0b; color:#1e3a8a; padding:18px 50px; font-weight:bold; border:none; border-radius:14px; font-size:20px; cursor:pointer; box-shadow:0 8px 25px rgba(251,146,60,0.4);">
+              SOLICITAR ACCESO + ASESORAMIENTO
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- MAPA INTERACTIVO -->
+  <!-- MAPA INTERACTIVO (CARGA UNA SOLA VEZ) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script>
-    const map = L.map('mapa').setView([-38.4161, -63.6167], 4);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-    const puntos = [
-      {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
-      {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
-      {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
-      {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
-    ];
-    puntos.forEach(p => {
-      L.circleMarker([p.lat, p.lng], { radius: 9, fillColor: "#0ea5e9", color: "#1e3a8a", weight: 2, fillOpacity: 0.85 })
+    document.addEventListener('DOMContentLoaded', function() {
+      const map = L.map('mapa').setView([-38.4161, -63.6167], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      const puntos = [
+        {lat: -31.4135, lng: -64.1811, lugar: "Córdoba Capital", info: "Milei 2023: 65.4%<br>Seguridad +82%<br>Jóvenes: 38%"},
+        {lat: -34.6037, lng: -58.3816, lugar: "CABA", info: "Rodríguez Larreta 2023: 56.8%<br>Inflación +90%<br>Mujeres: 52%"},
+        {lat: -32.8895, lng: -68.8458, lugar: "Mendoza", info: "Cornejo 2023: 48.2%<br>Trabajo +75%<br>NBI: 15%"},
+        {lat: -32.9442, lng: -60.6505, lugar: "Rosario", info: "Javkin 2023: 51.1%<br>Seguridad +88%<br>Jóvenes: 40%"}
+      ];
+      puntos.forEach(p => {
+        L.circleMarker([p.lat, p.lng], {
+          radius: 9,
+          fillColor: "#0ea5e9",
+          color: "#1e3a8a",
+          weight: 2,
+          fillOpacity: 0.85
+        })
         .addTo(map)
         .bindPopup(`<b style="font-size:16px;">${p.lugar}</b><br><span style="font-size:14px;">${p.info}</span>`);
+      });
     });
   </script>
-
 </body>
 </html>
