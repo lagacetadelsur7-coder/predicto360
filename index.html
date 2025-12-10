@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Predicto 360 – Acceso Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root{--blue:#004d99;--dark:#34495e;--orange:#f39c12;--mint:#1abc9c;--light:#f8fafc;--gray:#95a5a6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--light);color:#2d3436;line-height:1.8}
+  header{background:linear-gradient(135deg,var(--blue),var(--dark));color:white;padding:140px 20px 100px;text-align:center}
+  h1{font-size:3.5rem;font-weight:700}
+  .subtitle{font-size:1.6rem;font-weight:300;margin-top:16px}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
+  .section{padding:100px 0}
+  .section-alt{background:#fff}
+  .section-title{font-size:2.8rem;text-align:center;color:var(--blue);margin-bottom:60px;position:relative}
+  .section-title:after{content:"";width:100px;height:5px;background:var(--orange);display:block;margin:20px auto;border-radius:3px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+  .card{background:white;border-radius:20px;padding:36px;box-shadow:0 15px 45px rgba(0,0,0,0.1);transition:.4s;cursor:pointer;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-15px);box-shadow:0 30px 60px rgba(0,0,0,0.2)}
+  .card h3{font-size:1.6rem;color:var(--blue);margin-bottom:14px}
+  .badge{position:absolute;top:18px;right:18px;padding:8px 16px;border-radius:30px;font-size:0.9rem;font-weight:600;color:white}
+  .badge.limited{background:var(--mint)}
+  .badge.unlimited{background:var(--orange)}
+  .counter-bar{background:var(--dark);color:white;padding:18px 0;position:fixed;top:0;left:0;width:100%;z-index:1000;text-align:center;font-size:1.1rem;font-weight:600;display:none}
+  .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:2000}
+  .modal-content{background:white;padding:50px 40px;border-radius:24px;max-width:640px;width:92%;position:relative}
+  .close{position:absolute;top:18px;right:24px;font-size:2.4rem;cursor:pointer;color:var(--gray)}
+  .output{background:white;border-radius:24px;padding:60px;margin-top:80px;box-shadow:0 25px 60px rgba(0,0,0,0.12);border-left:8px solid var(--mint)}
+  .quote{font-style:italic;background:#f0f8ff;padding:32px;border-left:6px solid var(--blue);margin:40px 0;border-radius:12px;font-size:1.2rem}
+  .list-check{list-style:none;margin:30px 0}
+  .list-check li{position:relative;padding-left:40px;margin:16px 0}
+  .list-check li:before{content:"✓";position:absolute;left:0;color:var(--mint);font-weight:bold;font-size:1.6rem}
+  .contact-text{color:var(--orange);font-size:1.5rem;font-weight:600}
+  .footer{background:var(--dark);color:#ddd;padding:50px 20px;text-align:center;font-size:1rem}
+  .loading{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.9);display:none;justify-content:center;align-items:center;z-index:9999}
+  .spinner{border:8px solid #f3f3f3;border-top:8px solid var(--orange);border-radius:50%;width:70px;height:70px;animation:s 1s linear infinite}
+  @keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="counter-bar" id="counterBar">
+  Código activo ✓ | Usos restantes este mes (5 funciones IA): <strong id="usos">16</strong>/16 en total
+</div>
+
+<header>
+  <div class="container">
+    <h1>Predicto 360</h1>
+    <p class="subtitle">Lidera tu Propia Política de Vida. Conviértete en el Diseñador de Tu Realidad.</p>
+  </div>
+</header>
+
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Acceso Exclusivo – Plan Mensual $35.000</h2>
+    <input type="text" id="codigo" placeholder="Ingresa tu código de acceso mensual" style="width:100%;max-width:520px;margin:30px auto 50px;display:block;padding:20px;border-radius:50px;border:1px solid #ddd;text-align:center;font-size:1.2rem">
+
+    <div class="grid">
+      <div class="card" onclick="openModal(1)"><h3>1. Tono y Emoción</h3><div class="badge limited">16 usos totales</div></div>
+      <div class="card" onclick="openModal(2)"><h3>2. Optimizador X/Twitter</h3><div class="badge limited">16 usos totales</div></div>
+      <div class="card" onclick="openModal(3)"><h3>3. Detección de Riesgo</h3><div class="badge limited">16 usos totales</div></div>
+      <div class="card" onclick="openModal(4)"><h3>4. Resumen Estratégico</h3><div class="badge limited">16 usos totales</div></div>
+      <div class="card" onclick="openModal(5)"><h3>5. Escenarios 6 meses</h3><div class="badge limited">16 usos totales</div></div>
+      <div class="card" onclick="openModal(6)"><h3>6. Coherencia Narrativa</h3><div class="badge unlimited">Ilimitada</div></div>
+      <div class="card" onclick="openModal(7)"><h3>7. Mapeo de Actores</h3><div class="badge unlimited">Ilimitada</div></div>
+      <div class="card" onclick="openModal(8)"><h3>8. Benchmarking</h3><div class="badge unlimited">Ilimitada</div></div>
+    </div>
+
+    <div class="output" id="resultado">
+      <h2 style="color:var(--blue);text-align:center;margin-bottom:30px">Seleccioná una función para comenzar</h2>
+      <div id="contenido"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Vanessa Moyano -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Vanessa Moyano</h3>
+    <p>Coaching Ontológico: Un proceso de aprendizaje transformacional guiado por el rigor del análisis y la expansión del Ser.</p>
+    <p style="margin-top:30px">Agenda Tu Sesión de Diagnóstico Gratuita</p>
+    <p style="margin-top:30px">Lic. Vanessa Moyano | Coach Ontológico Profesional (C.O.)</p>
+    <div class="quote">
+      "Mi misión es llevar el rigor y la visión sistémica de la Ciencia Política al proceso personal, entendiendo que el cambio más significativo comienza en la política interna de cada individuo y organización."
+    </div>
+    <p>Como Licenciada en Ciencia Política, Vanessa Moyano aporta una perspectiva única a cada proceso de coaching, ayudándote a:</p>
+    <ul class="list-check">
+      <li>Identificar las dinámicas de poder y las narrativas internas que limitan tu influencia.</li>
+      <li>Analizar tus "sistemas" (familia, trabajo, relaciones) y diseñar nuevas estructuras efectivas.</li>
+      <li>Transformar tus conversaciones para liderar con propósito y claridad en cualquier entorno.</li>
+    </ul>
+    <p>Contáctanos:</p>
+    <p class="contact-text">Teléfono: +54 9 358 5629088</p>
+    <h2 class="section-title">¿Qué es el Coaching Ontológico y Por Qué Funciona?</h2>
+    <p>El Coaching Ontológico se enfoca en el SER que somos. No se trata solo de cambiar lo que haces, sino de transformar el observador que estás siendo. Trabajamos en la raíz de tus desafíos:</p>
+    <table style="width:100%;border-collapse:collapse;background:#f8f9fa">
+      <tr style="background:var(--mint);color:white"><th style="padding:20px">Componente del Ser</th><th style="padding:20px">Enfoque de la Transformación</th></tr>
+      <tr><td style="padding:20px">Lenguaje (Conversaciones)</td><td style="padding:20px">Revisamos cómo tus palabras (contigo y con otros) crean o limitan tu realidad, diseñando conversaciones efectivas.</td></tr>
+      <tr style="background:#f0f8ff"><td style="padding:20px">Emociones (Disposición a la Acción)</td><td style="padding:20px">Entrenamos tu inteligencia emocional para que tus estados de ánimo te impulsen, en lugar de paralizarte.</td></tr>
+      <tr><td style="padding:20px">Cuerpo (Presencia y Energía)</td><td style="padding:20px">Tomamos conciencia de cómo tu postura y energía reflejan y condicionan tu capacidad de acción y liderazgo.</td></tr>
+    </table>
+    <h2 class="section-title">Nuestros Servicios de Coaching Ontológico</h2>
+    <div class="grid">
+      <div class="card"><h3>1. Coaching Personal Transformacional (Life Coaching)</h3><p>Ideal para quienes buscan una profunda redefinición personal y el desarrollo de un liderazgo auténtico. Supera juicios y creencias que te han limitado por años. Diseña relaciones más nutritivas y auténticas. Encuentra propósito y claridad en momentos de cambio o incertidumbre.</p></div>
+      <div class="card"><h3>2. Coaching Ejecutivo y de Liderazgo</h3><p>Dirigido a profesionales, gerentes y dueños de negocio que necesitan escalar su impacto y liderazgo. Potencia tu capacidad de liderar a través de la comunicación efectiva. Aprende a realizar pedidos y ofertas que se traduzcan en acción y resultados. Gestiona la frustración y el estrés, manteniendo una visión estratégica clara.</p></div>
+      <div class="card"><h3>3. Coaching de Equipos y Organizacional</h3><p>Programas a medida para mejorar la coordinación, el clima laboral y el compromiso dentro de cualquier organización o grupo. Fortalece la confianza y la responsabilidad mutua dentro del equipo. Reduce los conflictos y las "conversaciones pendientes" que frenan el avance. Crea una cultura de aprendizaje constante que impulse la innovación.</p></div>
+    </div>
+    <h2 class="section-title">¿Qué Lograrás con Vanessa Moyano?</h2>
+    <ul class="list-check">
+      <li>Claridad Estratégica: Definir metas poderosas y saber exactamente qué pasos dar para alcanzarlas.</li>
+      <li>Maestría Emocional: Elegir tu estado de ánimo ante los desafíos, evitando reaccionar y empezando a responder.</li>
+      <li>Relaciones Poderosas: Mejorar tu escucha y comunicación, transformando la calidad de tus vínculos personales y profesionales.</li>
+      <li>Liderazgo 360: Influir positivamente en tu entorno y dejar de decir "no puedo" para vivir desde un espacio de capacidad y diseño.</li>
+    </ul>
+    <p style="text-align:center;font-size:1.4rem;margin:60px auto;max-width:900px">
+      ¿Estás listo para dejar de justificar el porqué no has logrado tus sueños y empezar a diseñarlos?<br>
+      ¡El cambio comienza con tu primera conversación con Vanessa!
+    </p>
+    <p style="text-align:center;font-size:1.5rem">Agenda tu Conversación de Descubrimiento sin Compromiso</p>
+    <p style="text-align:center">WhatsApp Directo: +54 9 358 5629088</p>
+  </div>
+</div>
+
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">César R. Moyano – Analista y Consultor Político</h2>
+    <div class="quote">
+      "Mi trabajo es desmantelar la complejidad, interpretar los datos y proveer la inteligencia necesaria para que usted tome decisiones informadas y maximice sus oportunidades en cualquier contexto político o institucional."
+    </div>
+    <p>César R. Moyano es Licenciado en Ciencia Política con Orientación en Análisis Político y se especializa en proveer inteligencia estratégica para:</p>
+    <ul class="list-check">
+      <li>Identificar riesgos y oportunidades en entornos volátiles.</li>
+      <li>Evaluar el impacto de políticas públicas y tendencias sociales.</li>
+      <li>Diseñar estrategias comunicacionales y electorales basadas en datos.</p>
+    </ul>
+    <p>Contáctenos:</p>
+    <p class="contact-text">Teléfono: +54 9 358 2430330</p>
+    <h2 class="section-title">Nuestros Servicios de Análisis y Consultoría</h2>
+    <p>Objetivo: Detallar los servicios técnicos que solo un analista político puede ofrecer.</p>
+    <div class="grid">
+      <div class="card"><h3>1. Consultoría y Análisis Estratégico</h3><p>Provisión de informes y asesoramiento permanente para la toma de decisiones. Análisis de Coyuntura: Interpretación diaria o semanal de la dinámica política local, nacional o regional. Mapeo de Actores e Intereses: Identificación de las alianzas, tensiones y poder de los actores clave en un escenario específico (empresarial, gubernamental, social). Análisis de Riesgo Político: Evaluación del impacto potencial de variables políticas y regulatorias sobre proyectos o inversiones.</p></div>
+      <div class="card"><h3>2. Estudios de Opinión Pública y Electorales</h3><p>Investigación de campo rigurosa para la comprensión del votante o consumidor. Diseño y Ejecución de Encuestas: Estudios cuantitativos y cualitativos para medir la intención de voto, la imagen de líderes o la aprobación de gestión. Segmentación de Audiencias: Definición precisa de los grupos de interés para optimizar los mensajes. Focus Groups y Entrevistas Profundas: Captura de la percepción y el sentir de grupos específicos.</p></div>
+      <div class="card"><h3>3. Asesoramiento en Comunicación Política</h3><p>Estrategias para la construcción de imagen y el manejo de mensajes en entornos sensibles. Construcción de Discurso: Desarrollo de narrativas coherentes y efectivas para campañas o gestión pública. Manejo de Crisis: Asesoramiento para mitigar el impacto de eventos negativos y proteger la reputación. Estrategia Digital y Territorial: Integración de la comunicación en línea con la movilización en el terreno.</p></div>
+    </div>
+    <p style="text-align:center;font-size:1.4rem;margin:60px auto;max-width:900px">
+      Contratar los servicios del Lic. César R. Moyano significa obtener:<br>
+      ✅ Inteligencia Predictiva: No solo describimos el presente, anticipamos escenarios futuros para preparar la mejor respuesta.<br>
+      ✅ Objetividad Técnica: Análisis libres de sesgos, fundamentados en metodologías probadas de la Ciencia Política.<br>
+      ✅ Optimización de Recursos: Invertir en acciones y mensajes que han sido validados por la investigación.<br>
+      ✅ Reducción de Riesgo: Minimizar la posibilidad de errores costosos derivados de la falta de información o el error de cálculo.<br>
+      En entornos complejos, la información es poder. No tome decisiones cruciales basándose en intuiciones.<br>
+      Contacte hoy para transformar el riesgo en oportunidad.<br>
+      ➡️ Solicite una Presentación de Nuestros Servicios y Metodología<br>
+      Teléfono Directo: +54 9 358 2430330
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    © 2025 Predicto 360 – Vanessa Moyano & César R. Moyano. Todos los derechos reservados.
+  </div>
+</div>
+
+<!-- Modal y Scripts -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('modal').style.display='none'">×</span>
+    <h2 id="modalTitle" style="text-align:center;color:var(--blue)">Análisis</h2>
+    <textarea id="textoModal" placeholder="Pegá aquí el texto o declaración a analizar..." style="width:100%;height:220px;padding:20px;border-radius:16px;border:1px solid #ddd;font-size:1.1rem;margin:30px 0"></textarea>
+    <button onclick="analizar()" style="background:var(--orange);color:white;padding:18px;border:none;border-radius:50px;width:100%;font-size:1.3rem">Generar Análisis</button>
+  </div>
+</div>
+
+<div class="loading" id="load"><div class="spinner"></div></div>
+
+<script>
+let servicio = 1;
+const GEMINI_KEY = 'AIzaSyD_TU_TOKEN_AQUI'; // ← PEGÁ TU CLAVE ACÁ (se expone, para producción usa backend)
+
+function openModal(id){
+  servicio = id;
+  document.getElementById("modalTitle").innerText = document.querySelectorAll(".card h3")[id-1].innerText;
+  document.getElementById("modal").style.display = "flex";
+}
+
+async function analizar(){
+  const codigo = document.getElementById("codigo").value.trim();
+  const texto = document.getElementById("textoModal").value.trim();
+  if(!codigo || !texto) return alert("Completá código y texto");
+
+  document.getElementById("load").style.display = "flex";
+  document.getElementById("modal").style.display = "none";
+
+  try{
+    const prompts = {
+      1: `Analiza tono y emoción del texto. Tono dominante, emociones despertadas y 3 sugerencias concretas de optimización.`,
+      2: `Optimiza este mensaje para X/Twitter (máx 280 caracteres). Hazlo más impactante, viral y profesional.`,
+      3: `Identifica los 3 mayores riesgos políticos o controversias. Clasifícalos Alto/Medio/Bajo y explica.`,
+      4: `Resumen estratégico: tesis central, implicancias políticas y recomendación de acción concreta.`,
+      5: `Proyecta dos escenarios a 6 meses: Optimista y Pesimista. Describe qué pasaría en cada caso.`,
+      6: `Evalúa la coherencia narrativa del mensaje y su alineación con una narrativa política sostenible a largo plazo.`,
+      7: `Mapea actores: identifica 3 actores clave afectados y 3 temas emergentes que surgen del texto.`,
+      8: `Compara este mensaje con uno típico de la competencia y sugiere una mejora competitiva.`
+    };
+
+    const system = `Actúa como Analista Estratégico de Predicto 360. Respuesta objetiva, técnica, concisa en español. Usa Markdown con ## y ###. Sin saludo ni despedida.`;
+
+    const body = {
+      contents: [{role:"user", parts:[{text: `${system}\n\n${prompts[servicio]}\n\nTexto: "${texto}"`}]}],
+      generationConfig: {temperature:0.7, maxOutputTokens:1024}
+    };
+
+    let intento = 0;
+    while (intento < 3) {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_KEY}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      });
+      if (r.ok) {
+        const d = await r.json();
+        const respuesta = d.candidates?.[0]?.content?.parts?.[0]?.text || "Error de respuesta";
+
+        // Contador de usos (local en navegador)
+        const mes = new Date().toISOString().slice(0,7);
+        const clave = `predicto360-${codigo}-${mes}`;
+        let usos = parseInt(localStorage.getItem(clave) || "0");
+        if (usos >= 16 && [1,2,3,4,5].includes(servicio)) {
+          throw new Error("Límite de 16 usos mensuales alcanzado para funciones IA");
+        }
+        usos += 1;
+        localStorage.setItem(clave, usos);
+        document.getElementById("usos").innerText = 16 - usos;
+        document.getElementById("counterBar").style.display = "block";
+
+        document.getElementById("contenido").innerHTML = marked.parse(respuesta);
+        return;
+      }
+      intento++;
+      await new Promise(r => setTimeout(r, 1000 * intento));
+    }
+    throw new Error("Error temporal de IA");
+  } catch (e) {
+    document.getElementById("contenido").innerHTML = `<p style="color:red;text-align:center"><strong>${e.message}</strong></p>`;
+  } finally {
+    document.getElementById("load").style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
